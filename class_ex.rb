@@ -2,6 +2,13 @@ class Song
 	# variables
 	@@plays = 0
 
+    def initialize(name, artist, duration)
+		@name = name
+		@artist = artist
+		@duration = duration
+		@plays = 0
+	end
+
 	#return name of the song
 	def name
 		@name
@@ -17,13 +24,6 @@ class Song
 		@duration
 	end
 
-	def initialize(name, artist, duration)
-		@name = name
-		@artist = artist
-		@duration = duration
-		@plays = 0
-	end
-
 	def play
 		@plays += 1
 		@@plays += 1
@@ -36,26 +36,35 @@ class Song
 end
 
 class KaraokeSong < Song
-  def initialize(name, artist, duration, lyrics)
-    super(name, artist, duration) # get the result of method from parent class
-    @lyrics = lyrics
-  end
+    def initialize(name, artist, duration, lyrics)
+        super(name, artist, duration) # get the result of method from parent class
+        @lyrics = lyrics
+    end
 
-  def duation=(newDuration)
-    @duration = newDuration
-  end
+    def duation=(newDuration)
+        @duration = newDuration
+    end
 
-  def durationInMinutes
-    @duration/60.0
-  end
+    def durationInMinutes
+        @duration/60.0
+    end
 
-  def durationInMinutes=(durationInMinutes)
-    @duration = (durationInMinutes*60).to_i
-  end
+    def durationInMinutes=(durationInMinutes)
+        @duration = (durationInMinutes*60).to_i
+    end
 
-  def to_s
-    super + " [#{@lyrics}]"
-  end
+    def to_s
+        super + " [#{@lyrics}]"
+    end
+end
+
+class SongList
+	# constants
+    MaxTime = 5*60
+
+    def SongList.isTooLong(aSong)
+        return aSong.duration > MaxTime
+    end
 end
 
 aSong = KaraokeSong.new("Faded", "Alan Walker", 160, "I'm faded...")
@@ -69,3 +78,5 @@ aSong2 = KaraokeSong.new("Alone", "Alan Walker", 200, "Where are you now...")
 puts aSong.play
 puts aSong2.play
 puts aSong2.play
+
+puts SongList.isTooLong(aSong2)
