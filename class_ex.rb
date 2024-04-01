@@ -59,12 +59,38 @@ class KaraokeSong < Song
 end
 
 class SongList
-	# constants
-    MaxTime = 5*60
+	def initialize
+		@songs = Array.new
+	end
 
-    def SongList.isTooLong(aSong)
-        return aSong.duration > MaxTime
-    end
+	# def [](key)
+	# 	if key.kind_of?(Integer)
+	# 		return @songs[key]
+	# 	else
+	# 		for i in 0...@songs.length
+	# 			return @songs[i] if key == @songs[i].name
+	# 		end
+	# 	end
+	# 	return nil
+	# end
+
+	def [](key)
+		return @songs[key] if key.kind_of?(Integer)
+		return @songs.find { |aSong| aSong.name == key}
+	end
+
+	def append(aSong)
+		@songs.push(aSong)
+		self
+	end
+
+	def deleteFirst
+		@songs.shift
+	end
+
+	def deleteLast
+		@songs.pop
+	end
 end
 
 aSong = KaraokeSong.new("Faded", "Alan Walker", 160, "I'm faded...")
@@ -79,4 +105,9 @@ puts aSong.play
 puts aSong2.play
 puts aSong2.play
 
-puts SongList.isTooLong(aSong2)
+list = SongList.new
+list.append(Song.new("Track1", "Artist1", 1))
+list.append(Song.new("Track2", "Artist1", 2))
+
+puts list[1]
+puts list["Track1"]
