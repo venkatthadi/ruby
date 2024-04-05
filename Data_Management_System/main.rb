@@ -60,8 +60,7 @@ end
 
 
 if __FILE__ == $PROGRAM_NAME
-    f = JsonHandler.new("data.json")
-    # f.add_entity("Account", {"name": "John"})
+    f = JsonHandler.new("Data_Management_System/data.json")
     print "Enter an option: \n"
     print "1. Account\n"
     print "2. Network\n"
@@ -70,7 +69,7 @@ if __FILE__ == $PROGRAM_NAME
     print "5. Users\n"
     print "6. Display contents\n"
     print "7. Exit\n"
-    
+
     while 1
         option = gets.chomp.to_i
         case option
@@ -92,12 +91,12 @@ if __FILE__ == $PROGRAM_NAME
                             name = gets.chomp
                             acc = Account.new(id, name)
                             f.add_entity("Accounts", acc.to_h)
-                            
+
                         when 2
                             f.get_entity("Accounts").each do |acc|
                                 puts acc
                             end
-                        
+
                         when 3
                             print "Enter ID: "
                             id = gets.chomp.to_i
@@ -109,7 +108,7 @@ if __FILE__ == $PROGRAM_NAME
                                     f.save_data
                                 end
                             end
-                        
+
                         when 4
                             print "Enter ID: "
                             id = gets.chomp.to_i
@@ -119,7 +118,7 @@ if __FILE__ == $PROGRAM_NAME
                                     f.save_data
                                 end
                             end
-                        
+
                         when 5
                             break
 
@@ -129,7 +128,7 @@ if __FILE__ == $PROGRAM_NAME
                 end
             when 7
                 break
-                    
+
                     # else
                     #         print "Invalid option, try again... (to exit choose 7)\n"
         end
