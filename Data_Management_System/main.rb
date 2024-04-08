@@ -1,5 +1,17 @@
 require_relative "json_handler.rb"
 
+'''
+1. Account - {id, name} - Can be multiple Accounts
+2. Network - {id, name, account_id} - Belongs to an Account.
+3. School - {id, name, network_id} - Belongs to Network
+4. UserType - {id, name} - Same UserType can exist in multiple schools
+5. Users - {id, email, usertype} - User will have UserType & Belongs to a single School.
+
+to_h: creates a hash({key: value} pairs) from the object.
+
+rails version: 2.7.2
+'''
+
 class Account
     def initialize(id, name)
         @id = id
@@ -58,16 +70,18 @@ class Users
     end
 end
 
+# we need to check if the email is valid or not (ex: test@test.com(valid), test-123.com(invalid))
 def valid_email?(email)
     email_re = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\Z/
     email =~ email_re
 end
 
 if __FILE__ == $PROGRAM_NAME
+    # opens a new file or load already existing file
     f = JsonHandler.new("data.json")
-    # f.add_entity("Account", {"name": "John"})
 
     while 1
+        # display menu of entities
         print "Enter an option: \n"
         print "1. Account\n"
         print "2. Network\n"
