@@ -1,12 +1,15 @@
 {
   "Accounts": [
     {
-      "ID": 1,
-      "Name": "acc1"
-    },
+      "ID": 101,
+      "Name": "abc"
+    }
+  ],
+  "Networks": [
     {
-      "ID": 2,
-      "Name": "acc2"
+      "ID": 201,
+      "Name": "testNet",
+      "AccountID": 101
     }
   ]
 }

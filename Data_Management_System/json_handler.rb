@@ -29,4 +29,13 @@ class JsonHandler
     def get_entity(entity_name)
         @data[entity_name] || []
     end
+
+    def print_data
+        @data.each do |entity_name, entities|
+            puts "#{entity_name.capitalize}"
+            entities.each do |entity|
+                puts JSON.pretty_generate(entity)
+            end
+        end
+    end
 end
