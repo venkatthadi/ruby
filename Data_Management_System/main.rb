@@ -76,8 +76,10 @@ def valid_email?(email)
     email =~ email_re
 end
 
+
+
 if __FILE__ == $PROGRAM_NAME
-    # opens a new file or load already existing file
+    # opens a new file or load already existing file 
     f = JsonHandler.new("data.json")
 
     while 1
@@ -90,9 +92,10 @@ if __FILE__ == $PROGRAM_NAME
         print "5. Users\n"
         print "6. Display contents\n"
         print "7. Exit\n"
-
+    
         option = gets.chomp.to_i
         case option
+            # option for accounts section 
             when 1
                 while 1
                     print "Enter an option: (Accounts)\n"
@@ -111,12 +114,13 @@ if __FILE__ == $PROGRAM_NAME
                             name = gets.chomp
                             acc = Account.new(id, name)
                             f.add_entity("Accounts", acc.to_h)
-
+                            
                         when 2
+                            # print each entity
                             f.get_entity("Accounts").each do |acc|
                                 puts acc
                             end
-
+                        
                         when 3
                             print "Enter ID: "
                             id = gets.chomp.to_i
@@ -127,26 +131,38 @@ if __FILE__ == $PROGRAM_NAME
                                     acc["Name"] = name
                                     f.save_data
                                 end
+                                if acc[:ID] == id
+                                    print "Enter new name: "
+                                    name = gets.chomp
+                                    acc[:Name] = name
+                                    f.save_data
+                                end
                             end
-
+                        
                         when 4
                             print "Enter ID: "
                             id = gets.chomp.to_i
+                            # delete entity if it exists
                             f.get_entity("Accounts").each do |acc|
                                 if acc["ID"] == id
                                     f.get_entity("Accounts").delete(acc)
                                     f.save_data
                                 end
+                                if acc[:ID] == id
+                                    f.get_entity("Accounts").delete(acc)
+                                    f.save_data
+                                end
                             end
-
+                        
                         when 5
                             break
 
                         else
+                            # default case
                             print "Invalid option, try again... (to exit choose 5)\n"
                     end
                 end
-
+            
             when 2
                 while 1
                     print "Enter an option: (Networks)\n"
@@ -155,7 +171,7 @@ if __FILE__ == $PROGRAM_NAME
                     print "3. Update\n"
                     print "4. Delete\n"
                     print "5. Exit\n"
-
+                
                     opt = gets.chomp.to_i
                     case opt
                         when 1
@@ -167,12 +183,12 @@ if __FILE__ == $PROGRAM_NAME
                             account_id = gets.chomp.to_i
                             net = Network.new(id, name, account_id)
                             f.add_entity("Networks", net.to_h)
-
+    
                         when 2
                             f.get_entity("Networks").each do |net|
                                 puts net
                             end
-
+    
                         when 3
                             print "Enter ID: "
                             id = gets.chomp.to_i
@@ -186,8 +202,17 @@ if __FILE__ == $PROGRAM_NAME
                                     net["AccountID"] = account_id
                                     f.save_data
                                 end
+                                if net[:ID] == id
+                                    print "Enter new name: "
+                                    name = gets.chomp
+                                    net[:Name] = name
+                                    print "Enter new account ID: "
+                                    account_id = gets.chomp.to_i
+                                    net[:AccountID] = account_id
+                                    f.save_data
+                                end
                             end
-
+    
                         when 4
                             print "Enter ID: "
                             id = gets.chomp.to_i
@@ -196,11 +221,15 @@ if __FILE__ == $PROGRAM_NAME
                                     f.get_entity("Networks").delete(net)
                                     f.save_data
                                 end
+                                if net[:ID] == id
+                                    f.get_entity("Networks").delete(net)
+                                    f.save_data
+                                end
                             end
-
+    
                         when 5
                             break
-
+    
                         else
                             print "Invalid option, try again... (to exit choose 5)\n"
                     end
@@ -214,7 +243,7 @@ if __FILE__ == $PROGRAM_NAME
                     print "3. Update\n"
                     print "4. Delete\n"
                     print "5. Exit\n"
-
+    
                     opt = gets.chomp.to_i
                     case opt
                         when 1
@@ -226,12 +255,12 @@ if __FILE__ == $PROGRAM_NAME
                             network_id = gets.chomp.to_i
                             school = School.new(id, name, network_id)
                             f.add_entity("Schools", school.to_h)
-
+    
                         when 2
                             f.get_entity("Schools").each do |school|
                                 puts school
                             end
-
+    
                         when 3
                             print "Enter ID: "
                             id = gets.chomp.to_i
@@ -245,8 +274,17 @@ if __FILE__ == $PROGRAM_NAME
                                     net["NetworkID"] = network_id
                                     f.save_data
                                 end
+                                if school[:ID] == id
+                                    print "Enter new name: "
+                                    name = gets.chomp
+                                    net[:Name] = name
+                                    print "Enter new network ID: "
+                                    network_id = gets.chomp.to_i
+                                    net[:NetworkID] = network_id
+                                    f.save_data
+                                end
                             end
-
+    
                         when 4
                             print "Enter ID: "
                             id = gets.chomp.to_i
@@ -255,11 +293,15 @@ if __FILE__ == $PROGRAM_NAME
                                     f.get_entity("Schools").delete(school)
                                     f.save_data
                                 end
+                                if school[:ID] == id
+                                    f.get_entity("Schools").delete(school)
+                                    f.save_data
+                                end
                             end
-
+    
                         when 5
                             break
-
+    
                         else
                             print "Invalid option, try again... (to exit choose 5)\n"
                     end
@@ -273,7 +315,7 @@ if __FILE__ == $PROGRAM_NAME
                     print "3. Update\n"
                     print "4. Delete\n"
                     print "5. Exit\n"
-
+                
                     opt = gets.chomp.to_i
                     case opt
                         when 1
@@ -283,12 +325,12 @@ if __FILE__ == $PROGRAM_NAME
                             name = gets.chomp
                             usertype = UserType.new(id, name)
                             f.add_entity("UserTypes", usertype.to_h)
-
+    
                         when 2
                             f.get_entity("UserTypes").each do |utype|
                                 puts utype
                             end
-
+    
                         when 3
                             print "Enter ID: "
                             id = gets.chomp.to_i
@@ -299,8 +341,14 @@ if __FILE__ == $PROGRAM_NAME
                                     utype["Name"] = name
                                     f.save_data
                                 end
+                                if utype[:ID] == id
+                                    print "Enter new name: "
+                                    name = gets.chomp
+                                    utype[:Name] = name
+                                    f.save_data
+                                end
                             end
-
+    
                         when 4
                             print "Enter ID: "
                             id = gets.chomp.to_i
@@ -309,11 +357,15 @@ if __FILE__ == $PROGRAM_NAME
                                     f.get_entity("UserTypes").delete(utype)
                                     f.save_data
                                 end
+                                if utype[:ID] == id
+                                    f.get_entity("UserTypes").delete(utype)
+                                    f.save_data
+                                end
                             end
-
+    
                         when 5
                             break
-
+    
                         else
                             print "Invalid option, try again... (to exit choose 5)\n"
                     end
@@ -321,6 +373,7 @@ if __FILE__ == $PROGRAM_NAME
 
             when 5
                 while 1
+                    
                     print "Enter an option: (Users)\n"
                     print "1. Create\n"
                     print "2. Read\n"
@@ -348,12 +401,12 @@ if __FILE__ == $PROGRAM_NAME
                             usertype = gets.chomp
                             user = Users.new(id, email, usertype)
                             f.add_entity("Users", user.to_h)
-
+    
                         when 2
                             f.get_entity("Users").each do |user|
                                 puts user
                             end
-
+    
                         when 3
                             print "Enter ID: "
                             id = gets.chomp.to_i
@@ -376,8 +429,26 @@ if __FILE__ == $PROGRAM_NAME
                                     user["UserType"] = usertype
                                     f.save_data
                                 end
+                                if user[:ID] == id
+                                    print "Enter new name: "
+                                    email = gets.chomp
+                                    if valid_email?(email)
+                                        puts "valid email"
+                                    else
+                                        puts "invalid email"
+                                        until valid_email?(email)
+                                            print "Enter E-Mail: "
+                                            email = gets.chomp
+                                        end
+                                    end
+                                    user[:Email] = email
+                                    print "Enter new usertype: "
+                                    usertype = gets.chomp.to_i
+                                    user[:UserType] = usertype
+                                    f.save_data
+                                end
                             end
-
+    
                         when 4
                             print "Enter ID: "
                             id = gets.chomp.to_i
@@ -386,11 +457,15 @@ if __FILE__ == $PROGRAM_NAME
                                     f.get_entity("Users").delete(user)
                                     f.save_data
                                 end
+                                if user[:ID] == id
+                                    f.get_entity("Users").delete(user)
+                                    f.save_data
+                                end
                             end
-
+    
                         when 5
                             break
-
+    
                         else
                             print "Invalid option, try again... (to exit choose 5)\n"
                     end
@@ -398,10 +473,10 @@ if __FILE__ == $PROGRAM_NAME
 
             when 6
                 f.print_data
-
+            
             when 7
                 break
-
+                    
             else
                     print "Invalid option, try again... (to exit choose 7)\n"
         end
