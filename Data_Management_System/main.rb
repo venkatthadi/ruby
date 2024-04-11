@@ -79,7 +79,7 @@ end
 
 
 if __FILE__ == $PROGRAM_NAME
-    # opens a new file or load already existing file 
+    # opens a new file or load already existing file
     f = JsonHandler.new("data.json")
 
     while 1
@@ -92,10 +92,10 @@ if __FILE__ == $PROGRAM_NAME
         print "5. Users\n"
         print "6. Display contents\n"
         print "7. Exit\n"
-    
+
         option = gets.chomp.to_i
         case option
-            # option for accounts section 
+            # option for accounts section
             when 1
                 while 1
                     print "Enter an option: (Accounts)\n"
@@ -114,13 +114,13 @@ if __FILE__ == $PROGRAM_NAME
                             name = gets.chomp
                             acc = Account.new(id, name)
                             f.add_entity("Accounts", acc.to_h)
-                            
+
                         when 2
                             # print each entity
                             f.get_entity("Accounts").each do |acc|
                                 puts acc
                             end
-                        
+
                         when 3
                             print "Enter ID: "
                             id = gets.chomp.to_i
@@ -138,7 +138,7 @@ if __FILE__ == $PROGRAM_NAME
                                     f.save_data
                                 end
                             end
-                        
+
                         when 4
                             print "Enter ID: "
                             id = gets.chomp.to_i
@@ -153,7 +153,7 @@ if __FILE__ == $PROGRAM_NAME
                                     f.save_data
                                 end
                             end
-                        
+
                         when 5
                             break
 
@@ -162,7 +162,7 @@ if __FILE__ == $PROGRAM_NAME
                             print "Invalid option, try again... (to exit choose 5)\n"
                     end
                 end
-            
+
             when 2
                 while 1
                     print "Enter an option: (Networks)\n"
@@ -171,7 +171,7 @@ if __FILE__ == $PROGRAM_NAME
                     print "3. Update\n"
                     print "4. Delete\n"
                     print "5. Exit\n"
-                
+
                     opt = gets.chomp.to_i
                     case opt
                         when 1
@@ -183,12 +183,12 @@ if __FILE__ == $PROGRAM_NAME
                             account_id = gets.chomp.to_i
                             net = Network.new(id, name, account_id)
                             f.add_entity("Networks", net.to_h)
-    
+
                         when 2
                             f.get_entity("Networks").each do |net|
                                 puts net
                             end
-    
+
                         when 3
                             print "Enter ID: "
                             id = gets.chomp.to_i
@@ -212,7 +212,7 @@ if __FILE__ == $PROGRAM_NAME
                                     f.save_data
                                 end
                             end
-    
+
                         when 4
                             print "Enter ID: "
                             id = gets.chomp.to_i
@@ -226,10 +226,10 @@ if __FILE__ == $PROGRAM_NAME
                                     f.save_data
                                 end
                             end
-    
+
                         when 5
                             break
-    
+
                         else
                             print "Invalid option, try again... (to exit choose 5)\n"
                     end
@@ -243,7 +243,7 @@ if __FILE__ == $PROGRAM_NAME
                     print "3. Update\n"
                     print "4. Delete\n"
                     print "5. Exit\n"
-    
+
                     opt = gets.chomp.to_i
                     case opt
                         when 1
@@ -255,12 +255,12 @@ if __FILE__ == $PROGRAM_NAME
                             network_id = gets.chomp.to_i
                             school = School.new(id, name, network_id)
                             f.add_entity("Schools", school.to_h)
-    
+
                         when 2
                             f.get_entity("Schools").each do |school|
                                 puts school
                             end
-    
+
                         when 3
                             print "Enter ID: "
                             id = gets.chomp.to_i
@@ -284,7 +284,7 @@ if __FILE__ == $PROGRAM_NAME
                                     f.save_data
                                 end
                             end
-    
+
                         when 4
                             print "Enter ID: "
                             id = gets.chomp.to_i
@@ -298,10 +298,10 @@ if __FILE__ == $PROGRAM_NAME
                                     f.save_data
                                 end
                             end
-    
+
                         when 5
                             break
-    
+
                         else
                             print "Invalid option, try again... (to exit choose 5)\n"
                     end
@@ -315,7 +315,7 @@ if __FILE__ == $PROGRAM_NAME
                     print "3. Update\n"
                     print "4. Delete\n"
                     print "5. Exit\n"
-                
+
                     opt = gets.chomp.to_i
                     case opt
                         when 1
@@ -325,12 +325,12 @@ if __FILE__ == $PROGRAM_NAME
                             name = gets.chomp
                             usertype = UserType.new(id, name)
                             f.add_entity("UserTypes", usertype.to_h)
-    
+
                         when 2
                             f.get_entity("UserTypes").each do |utype|
                                 puts utype
                             end
-    
+
                         when 3
                             print "Enter ID: "
                             id = gets.chomp.to_i
@@ -348,7 +348,7 @@ if __FILE__ == $PROGRAM_NAME
                                     f.save_data
                                 end
                             end
-    
+
                         when 4
                             print "Enter ID: "
                             id = gets.chomp.to_i
@@ -362,10 +362,10 @@ if __FILE__ == $PROGRAM_NAME
                                     f.save_data
                                 end
                             end
-    
+
                         when 5
                             break
-    
+
                         else
                             print "Invalid option, try again... (to exit choose 5)\n"
                     end
@@ -373,7 +373,7 @@ if __FILE__ == $PROGRAM_NAME
 
             when 5
                 while 1
-                    
+
                     print "Enter an option: (Users)\n"
                     print "1. Create\n"
                     print "2. Read\n"
@@ -401,12 +401,12 @@ if __FILE__ == $PROGRAM_NAME
                             usertype = gets.chomp
                             user = Users.new(id, email, usertype)
                             f.add_entity("Users", user.to_h)
-    
+
                         when 2
                             f.get_entity("Users").each do |user|
                                 puts user
                             end
-    
+
                         when 3
                             print "Enter ID: "
                             id = gets.chomp.to_i
@@ -448,7 +448,7 @@ if __FILE__ == $PROGRAM_NAME
                                     f.save_data
                                 end
                             end
-    
+
                         when 4
                             print "Enter ID: "
                             id = gets.chomp.to_i
@@ -462,10 +462,10 @@ if __FILE__ == $PROGRAM_NAME
                                     f.save_data
                                 end
                             end
-    
+
                         when 5
                             break
-    
+
                         else
                             print "Invalid option, try again... (to exit choose 5)\n"
                     end
@@ -473,10 +473,10 @@ if __FILE__ == $PROGRAM_NAME
 
             when 6
                 f.print_data
-            
+
             when 7
                 break
-                    
+
             else
                     print "Invalid option, try again... (to exit choose 7)\n"
         end
